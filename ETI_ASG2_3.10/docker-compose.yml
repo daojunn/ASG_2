@@ -1,0 +1,127 @@
+version: '3.3'
+
+services:
+  ratingdb:
+    container_name: ratingdb
+    hostname: ratingdb
+    networks:
+      - commentratingasg2
+    ports:
+      - "9121:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD : password
+    image: daojunn/eti_asg2_310_ratingdb
+    restart: always
+    
+
+  commentdb:
+    container_name: commentdb
+    hostname: commentdb
+    networks:
+      - commentratingasg2
+    ports:
+      - "9122:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD : password
+    image: daojunn/eti_asg2_310_commentdb
+    restart: always
+    
+
+  testuserdb:
+    container_name: testuserdb
+    hostname: testuserdb
+    networks:
+      - commentratingasg2
+    ports:
+      - "9123:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD : password
+    image: daojunn/eti_asg2_310_testuserdb
+    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  rating:
+    container_name: ratingcontainer
+    hostname: ratingcontainer
+    networks:
+      - commentratingasg2
+    ports:
+      - 9124:9124
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - ratingdb
+    image: daojunn/eti_asg2_310_rating
+    restart: always
+    
+    
+  
+  comment:
+    container_name: commentscontainer
+    hostname: commentscontainer
+    networks:
+      - commentratingasg2
+    ports:
+      - 9125:9125
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - commentdb
+    image: daojunn/eti_asg2_310_comment
+    restart: always
+   
+    
+  
+  
+  tutor:
+    container_name: tutorscontainer
+    hostname: tutorscontainer
+    networks:
+      - commentratingasg2
+    ports:
+      - 9126:9126
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - testuserdb
+
+    image: daojunn/eti_asg2_310_tutor
+    restart: always
+    
+
+  student:
+    container_name: studentscontainer
+    hostname: studentscontainer
+    networks:
+      - commentratingasg2
+    ports:
+      - 9127:9127
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - testuserdb
+    image: daojunn/eti_asg2_310_student
+    restart: always
+
+  frontend:
+    container_name: frontend
+    hostname: frontend
+    image: daojunn/eti_asg2_310_frontend
+    restart: always
+    ports:
+      - "9128:80"
+
+
+networks:
+  commentratingasg2:
+    driver: bridge
+
+
+    
+  
