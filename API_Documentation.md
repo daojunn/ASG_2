@@ -2,32 +2,32 @@
 ## API Endpoints:
 | Microservice  | Port | Endpoint URL |
 | ------------- | ---- | ------------ |
-| Frontend  | 9128 | http://10.31.11.12:9128 |
+| Frontend  | 9120 | http://10.31.11.12:9120 |
 | Comment API  | 9125 | http://10.31.11.12:9125 |
 | Rating API  | 9124 | http://10.31.11.12:9124 |
 
 ## Front End Webpage Routes
 ```sh
 # 1. View Comments Received
-http://10.31.11.12:9128/ViewComments.html
+http://10.31.11.12:9120/ViewComments.html
 # 2. View Anon Comments Received
-http://10.31.11.12:9128/ViewAnonComments.html
+http://10.31.11.12:9120/ViewAnonComments.html
 # 3. View Ratings Received
-http://10.31.11.12:9128/ViewRatings.html
+http://10.31.11.12:9120/ViewRatings.html
 # 4. View Anon Ratings Received
-http://10.31.11.12:9128/ViewAnonRatings.html
+http://10.31.11.12:9120/ViewAnonRatings.html
 # 5. View Given Comments 
-http://10.31.11.12:9128/ViewGivenComments.html
+http://10.31.11.12:9120/ViewGivenComments.html
 # 6. View Given Ratings 
-http://10.31.11.12:9128/ViewGivenRatings.html
+http://10.31.11.12:9120/ViewGivenRatings.html
 # 7. Create Comments 
-http://10.31.11.12:9128/CreateComment.html
+http://10.31.11.12:9120/CreateComment.html
 # 8. Create Ratings 
-http://10.31.11.12:9128/CreateRating.html
+http://10.31.11.12:9120/CreateRating.html
 # 9. Update Comments 
-http://10.31.11.12:9128/UpdateComment.html
+http://10.31.11.12:9120/UpdateComment.html
 # 10. Update Ratings 
-http://10.31.11.12:9128/UpdateRating.html
+http://10.31.11.12:9120/UpdateRating.html
 
 
 
