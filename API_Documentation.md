@@ -181,7 +181,7 @@ curl -H "Content-Type:application/json" -X POST http://localhost:5002/api/rating
 ```
 
 ### [PUT] /api/rating
-Create a Rating
+Update an Rating
 ```
 Endpoint
 http://10.31.11.12:9124/api/rating
