@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">3.10 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Comments
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="../ViewComments.html">View Comments</a>
+                <a class="dropdown-item" href="../ViewAnonComments.html">View Anonymous Comments</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Ratings
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="../ViewRatings.html">View Ratings</a>
+                  <a class="dropdown-item" href="../ViewAnonRatings.html">View Anonymous Ratings</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Given
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="../ViewGivenComments.html">View Given Comments</a>
+                  <a class="dropdown-item" href="../ViewGivenRatings.html">View Given Ratings</a>
+                </div>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <form onsubmit="CreateRating('CreateRating', 'POST', this);">
+        <div>
+            <label for="CreatorID">Your Tutor ID:</label>
+            <input type="text" class="form-control" name="CreatorID" id="CreatorID" placeholder="Enter your ID" required>
+        </div>
+        <br>
+        <div>
+            <label for="ToStudentID">To student ID:</label>
+            <input type="text" class="form-control" name="ToStudentID" id="ToStudentID" placeholder="Student ID">
+        </div>
+        <br>
+        <div>
+            <label for="RatingData">Comment:</label>
+            <input type="text" class="form-control" name="RatingData" id="RatingData" placeholder="Enter Your Rating">
+        </div>
+        <br>
+        </br>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    function CreateRating(method, type, form) {
+        event.preventDefault();
+        const DataForm = new FormData(form);
+        var object;
+        var url;
+        if (type == "POST"){
+            var CreatorID
+            for(let [name, value] of DataForm){
+                if (name == "CreatorID") { 
+                    CreatorID = value
+                }
+            }
+            var object = {
+                "CreatorID": parseInt(DataForm.get("CreatorID")),
+                "CreatorType": "Tutor",
+                "TargetID": parseInt(DataForm.get("ToStudentID")),
+                "TargetType": "Student",
+                "RatingScore": parseInt(DataForm.get("RatingData")),
+                "Anonymous": 0
+            };
+            object = JSON.stringify(object);
+            console.log(CreatorID);
+            url = "http://10.31.11.12:9124/api/rating";
+            console.log(url);
+        }
+        $.ajax({
+            type: type,
+            url: url,
+            dataType: "json",
+            data: object,
+            contentType: "application/json",
+            complete: function(response, textStatus){
+                alert("201 - Rating Posted!");
+            },
+            
+        });
+    };
+</script>
