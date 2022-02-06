@@ -22,7 +22,7 @@ Set Up Guide:
    * go get -u github.com/gorilla/mux
    * go get -u github.com/gorilla/handlers
 3. Execute database scripts located in "DB" folder 
-   * (SQL User Credentials Username: user2 , Password: password)
+   * (SQL User Credentials Username: Root , Password: password)
   
 
 
