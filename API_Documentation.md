@@ -130,3 +130,69 @@ curl -H "Content-Type:application/json" -X PUT http://localhost:5001/api/comment
 
 ```
 
+# Rating Microservice API Documentation
+### [GET] /api/rating/student
+Get All Ratings created by all Student
+```
+Endpoint
+http://10.31.11.12:9124/api/rating/student
+Response
+Status code 200 if successful, else an error code with a corresponding status message will be returned if unsuccessful. 
+```
+
+### [GET] /api/rating/tutor/unanonymized/{tutorid}
+Get All Unanonymized Ratings received by Tutor
+```
+Endpoint
+http://10.31.11.12:9124/api/rating/tutor/unanonymized/{tutorid}
+Response
+Status code 200 if successful, else an error code with a corresponding status message will be returned if unsuccessful. 
+```
+
+### [GET] /api/rating/tutor/anonymized/{tutorid}
+Get All anonymized Ratings received by Tutor
+```
+Endpoint
+http://10.31.11.12:9124/api/rating/tutor/anonymized/{tutorid}
+Response
+Status code 200 if successful, else an error code with a corresponding status message will be returned if unsuccessful. 
+```
+
+### [GET] /api/rating/tutor/given/{tutorid}
+Get All anonymized Ratings given by Tutor
+```
+Endpoint
+http://10.31.11.12:9124/api/rating/tutor/given/{tutorid}
+Response
+Status code 200 if successful, else an error code with a corresponding status message will be returned if unsuccessful. 
+```
+
+### [POST] /api/rating
+Create a Rating
+```
+Endpoint
+http://10.31.11.12:9124/api/rating
+Response
+Status code 200 if successful, else an error code with a corresponding status message will be returned if unsuccessful. 
+
+Example of Curl Request:
+curl -H "Content-Type:application/json" -X POST http://localhost:5002/api/rating -d "{\"CreatorID\":2,\"CreatorType\":\"Tutor\",\"TargetID\":1,\"TargetType\":\"Student\",\"RatingScore\":5,\"Anonymous\":0}"
+
+```
+
+### [PUT] /api/rating
+Create a Rating
+```
+Endpoint
+http://10.31.11.12:9124/api/rating
+Response
+Status code 200 if successful, else an error code with a corresponding status message will be returned if unsuccessful. 
+
+Example of Curl Request:
+curl -H "Content-Type:application/json" -X PUT http://localhost:5002/api/rating -d "{\"RatingID\":1,\"TargetType\":\"Student\",\"RatingScore\":100}"
+
+```
+
+
+
+
