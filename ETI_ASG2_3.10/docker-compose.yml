@@ -115,7 +115,7 @@ services:
     image: daojunn/eti_asg2_310_frontend
     restart: always
     ports:
-      - "9128:80"
+      - "9120:80"
 
 
 networks:
